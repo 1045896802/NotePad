@@ -143,7 +143,7 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
   
   1.增加时间戳显示
   
-  ![Image text]    (https://github.com/1045896802/NotePad/blob/master/img/%E5%A2%9E%E5%8A%A0%E6%97%B6%E9%97%B4%E6%88%B3%E6%98%BE%E7%A4%BA.png)
+  ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E5%A2%9E%E5%8A%A0%E6%97%B6%E9%97%B4%E6%88%B3%E6%98%BE%E7%A4%BA.png)
   
   2.根据标题查找便签
   
