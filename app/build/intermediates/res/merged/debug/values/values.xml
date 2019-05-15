@@ -5,7 +5,7 @@
     <string name="button_ok">OK</string>
     <string name="error_message">Error loading note</string>
     <string name="error_title">Error</string>
-    <string name="live_folder_name">NotePad</string>
+    <string name="live_folder_name">Notes</string>
     <string name="menu_add">New note</string>
     <string name="menu_copy">Copy</string>
     <string name="menu_delete">Delete</string>

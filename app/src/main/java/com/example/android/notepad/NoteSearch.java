@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 
 public class NoteSearch extends ListActivity implements SearchView.OnQueryTextListener {
@@ -24,7 +23,7 @@ public class NoteSearch extends ListActivity implements SearchView.OnQueryTextLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.note_search_list);
+        setContentView(R.layout.note_search);
         Intent intent = getIntent();
         if (intent.getData() == null) {
             intent.setData(NotePad.Notes.CONTENT_URI);

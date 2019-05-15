@@ -41,7 +41,7 @@ public final class R {
     }
     public static final class layout {
         public static final int note_editor=0x7f030000;
-        public static final int note_search_list=0x7f030001;
+        public static final int note_search=0x7f030001;
         public static final int noteslist_item=0x7f030002;
         public static final int title_editor=0x7f030003;
     }
