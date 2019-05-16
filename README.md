@@ -147,15 +147,15 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
   
   2.根据标题查找便签
   
-  ![Image text](https://github.com/1045896802/UIcomponents/blob/master/img/2r.png)
+  (1)查找页面
   
-  3.使用XML定义菜单
+  ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E6%90%9C%E7%B4%A2%E6%A0%87%E9%A2%98-1.png)
   
-  ![Image text](https://github.com/1045896802/UIcomponents/blob/master/img/3r.png)
+  (2)查找结果
   
-  4.创建上下文操作模式(ActionMode)的上下文菜单
+  ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E6%90%9C%E7%B4%A2%E6%A0%87%E9%A2%98-2.png)
   
-  ![Image text](https://github.com/1045896802/UIcomponents/blob/master/img/4r.png)
+  
 
 
 
