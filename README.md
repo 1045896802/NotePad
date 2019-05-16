@@ -217,6 +217,37 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
         );
         setListAdapter(adapter);
         return true;
+        
+  4.主题更改
+  
+  AndroidManifest.xml
+  
+    <activity
+        android:name=".NotesList"
+        android:label="@string/title_notes_list"
+        android:theme="@android:style/Theme.Holo.Light">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <action android:name="android.intent.action.EDIT" />
+            <action android:name="android.intent.action.PICK" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+
+            <data android:mimeType="vnd.android.cursor.dir/vnd.google.note" />
+        </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.GET_CONTENT" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+
+            <data android:mimeType="vnd.android.cursor.item/vnd.google.note" />
+        </intent-filter>
+    </activity>
      
 
   ## 三. 实验结果及截图
@@ -234,6 +265,20 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
   (2)查找结果
   
   ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E6%90%9C%E7%B4%A2%E6%A0%87%E9%A2%98-2.png)
+  
+  3.便签排序
+  
+  (1)排序前
+  
+  ![Image text](https://github.com/1045896802/NotePad/blob/master/img/便签排序-1.png)
+  
+  (2)创建时间排序结果
+  
+  ![Image text](https://github.com/1045896802/NotePad/blob/master/img/便签排序-2.png)
+  
+  4.主题更改
+  
+  
   
   
 
