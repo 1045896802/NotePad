@@ -138,7 +138,86 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
             android:id="@android:id/list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ListView>
-    </LinearLayout>  
+    </LinearLayout>
+    
+  3.便签排序
+  
+  (1)list_options_menu.xml
+  
+    <item
+          android:id="@+id/menu_sort"
+          android:icon="@android:drawable/ic_menu_sort_alphabetically"
+          android:showAsAction="always"
+          android:title="@string/menu_sort">
+          <menu>
+              <item
+                  android:id="@+id/menu_sort_createtime"
+                  android:title="@string/menu_sort_createtime" />
+              <item
+                  android:id="@+id/menu_sort_updatetime"
+                  android:title="@string/menu_sort_updatetime" />
+              <item
+                  android:id="@+id/menu_sort_title"
+                  android:title="@string/menu_sort_title" />
+          </menu>
+      </item>
+      
+  (2)NoteList.java
+    
+    case R.id.menu_sort_createtime:
+        cursor = managedQuery(
+                getIntent().getData(),
+                PROJECTION,
+                null,
+                null,
+                NotePad.Notes._ID
+        );
+        adapter = new SimpleCursorAdapter(
+                this,
+                R.layout.noteslist_item,
+                cursor,
+                dataColumns,
+                viewIDs
+        );
+        setListAdapter(adapter);
+        return true;
+
+    case R.id.menu_sort_updatetime:
+        cursor = managedQuery(
+                getIntent().getData(),
+                PROJECTION,
+                null,
+                null,
+                NotePad.Notes.DEFAULT_SORT_ORDER
+        );
+        adapter = new SimpleCursorAdapter(
+                this,
+                R.layout.noteslist_item,
+                cursor,
+                dataColumns,
+                viewIDs
+        );
+        setListAdapter(adapter);
+        return true;
+
+    case R.id.menu_sort_title:
+        cursor = managedQuery(
+                getIntent().getData(),
+                PROJECTION,
+                null,
+                null,
+                NotePad.Notes.COLUMN_NAME_TITLE
+        );
+        adapter = new SimpleCursorAdapter(
+                this,
+                R.layout.noteslist_item,
+                cursor,
+                dataColumns,
+                viewIDs
+        );
+        setListAdapter(adapter);
+        return true;
+     
 
   ## 三. 实验结果及截图
   
