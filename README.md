@@ -220,6 +220,8 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
         
   4.主题更改
   
+  更改默认主题为白色
+  
   AndroidManifest.xml
   
     <activity
@@ -248,7 +250,31 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
             <data android:mimeType="vnd.android.cursor.item/vnd.google.note" />
         </intent-filter>
     </activity>
-     
+    
+    
+    //日间模式
+    case R.id.menu_theme_daytime:
+        linearLayout = (LinearLayout) findViewById(R.id.layout);
+        linearLayout.setBackgroundColor(Color.WHITE);
+        title = (TextView) findViewById(R.id.title);
+        title.setTextColor(Color.BLACK);
+        timeStamp = (TextView) findViewById(R.id.timeStamp);
+        timeStamp.setTextColor(Color.BLACK);
+        return true;
+
+    //夜间模式
+    case R.id.menu_theme_night:
+        linearLayout = (LinearLayout) findViewById(R.id.layout);
+        linearLayout.setBackgroundColor(Color.BLACK);
+        title = (TextView) findViewById(R.id.title);
+        title.setTextColor(Color.WHITE);
+        timeStamp = (TextView) findViewById(R.id.timeStamp);
+        timeStamp.setTextColor(Color.WHITE);
+        return true;
+  
+  5.笔记导出  
+ 
+
 
   ## 三. 实验结果及截图
   
@@ -277,6 +303,12 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
   ![Image text](https://github.com/1045896802/NotePad/blob/master/img/便签排序-2.png)
   
   4.主题更改
+  
+  (1)日间模式:白底黑字
+  
+  (2)夜间模式:黑底白字
+
+
   
   
   
