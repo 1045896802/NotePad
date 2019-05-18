@@ -13,7 +13,9 @@
 NoteList中显示条目增加时间戳显示
 
 添加笔记查询功能（根据标题查询）
-  
+
+![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E6%B7%BB%E5%8A%A0%E7%AC%94%E8%AE%B0%E6%97%B6%E9%97%B4%E6%88%B3%E5%92%8C%E7%AC%94%E8%AE%B0%E6%9F%A5%E8%AF%A2%E5%8A%9F%E8%83%BD%E7%A4%BA%E6%84%8F%E5%9B%BE.png)
+
 (2)附加功能：根据自身实际情况进行扩充，以下是建议的扩展功能
 
 UI美化
@@ -34,6 +36,11 @@
 
 。。。。。。
 
+![Image text](
+https://github.com/1045896802/NotePad/blob/master/img/%E9%99%84%E5%8A%A0%E5%8A%9F%E8%83%BD%E7%A4%BA%E6%84%8F%E5%9B%BE1.png)
+
+![Image text](
+https://github.com/1045896802/NotePad/blob/master/img/%E9%99%84%E5%8A%A0%E5%8A%9F%E8%83%BD%E7%A4%BA%E6%84%8F%E5%9B%BE2.png)
 3.参考应用
 
 (1)彩色笔记：http://www.cncrk.com/downinfo/100168.html
@@ -409,9 +416,15 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
   
   (1)日间模式:白底黑字
   
+  ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E6%97%A5%E9%97%B4%E6%A8%A1%E5%BC%8F.png)
+  
   (2)夜间模式:黑底白字
+  
+  ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E5%A4%9C%E9%97%B4%E6%A8%A1%E5%BC%8F.png)
 
   5.笔记导出
+  
+  ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E7%AC%94%E8%AE%B0%E5%AF%BC%E5%87%BA.png)
   
   
   
