@@ -15,6 +15,7 @@
 添加笔记查询功能（根据标题查询）
   
 (2)附加功能：根据自身实际情况进行扩充，以下是建议的扩展功能
+
 UI美化
 
 更改记事本的背景
@@ -137,25 +138,181 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
             android:id="@android:id/list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ListView>
-    </LinearLayout>  
+    </LinearLayout>
+    
+  3.便签排序
+  
+  (1)list_options_menu.xml
+  
+    <item
+          android:id="@+id/menu_sort"
+          android:icon="@android:drawable/ic_menu_sort_alphabetically"
+          android:showAsAction="always"
+          android:title="@string/menu_sort">
+          <menu>
+              <item
+                  android:id="@+id/menu_sort_createtime"
+                  android:title="@string/menu_sort_createtime" />
+              <item
+                  android:id="@+id/menu_sort_updatetime"
+                  android:title="@string/menu_sort_updatetime" />
+              <item
+                  android:id="@+id/menu_sort_title"
+                  android:title="@string/menu_sort_title" />
+          </menu>
+      </item>
+      
+  (2)NoteList.java
+    
+    case R.id.menu_sort_createtime:
+        cursor = managedQuery(
+                getIntent().getData(),
+                PROJECTION,
+                null,
+                null,
+                NotePad.Notes._ID
+        );
+        adapter = new SimpleCursorAdapter(
+                this,
+                R.layout.noteslist_item,
+                cursor,
+                dataColumns,
+                viewIDs
+        );
+        setListAdapter(adapter);
+        return true;
+
+    case R.id.menu_sort_updatetime:
+        cursor = managedQuery(
+                getIntent().getData(),
+                PROJECTION,
+                null,
+                null,
+                NotePad.Notes.DEFAULT_SORT_ORDER
+        );
+        adapter = new SimpleCursorAdapter(
+                this,
+                R.layout.noteslist_item,
+                cursor,
+                dataColumns,
+                viewIDs
+        );
+        setListAdapter(adapter);
+        return true;
+
+    case R.id.menu_sort_title:
+        cursor = managedQuery(
+                getIntent().getData(),
+                PROJECTION,
+                null,
+                null,
+                NotePad.Notes.COLUMN_NAME_TITLE
+        );
+        adapter = new SimpleCursorAdapter(
+                this,
+                R.layout.noteslist_item,
+                cursor,
+                dataColumns,
+                viewIDs
+        );
+        setListAdapter(adapter);
+        return true;
+        
+  4.主题更改
+  
+  更改默认主题为白色
+  
+  AndroidManifest.xml
+  
+    <activity
+        android:name=".NotesList"
+        android:label="@string/title_notes_list"
+        android:theme="@android:style/Theme.Holo.Light">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <action android:name="android.intent.action.EDIT" />
+            <action android:name="android.intent.action.PICK" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+
+            <data android:mimeType="vnd.android.cursor.dir/vnd.google.note" />
+        </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.GET_CONTENT" />
+
+            <category android:name="android.intent.category.DEFAULT" />
+
+            <data android:mimeType="vnd.android.cursor.item/vnd.google.note" />
+        </intent-filter>
+    </activity>
+    
+    
+    //日间模式
+    case R.id.menu_theme_daytime:
+        linearLayout = (LinearLayout) findViewById(R.id.layout);
+        linearLayout.setBackgroundColor(Color.WHITE);
+        title = (TextView) findViewById(R.id.title);
+        title.setTextColor(Color.BLACK);
+        timeStamp = (TextView) findViewById(R.id.timeStamp);
+        timeStamp.setTextColor(Color.BLACK);
+        return true;
+
+    //夜间模式
+    case R.id.menu_theme_night:
+        linearLayout = (LinearLayout) findViewById(R.id.layout);
+        linearLayout.setBackgroundColor(Color.BLACK);
+        title = (TextView) findViewById(R.id.title);
+        title.setTextColor(Color.WHITE);
+        timeStamp = (TextView) findViewById(R.id.timeStamp);
+        timeStamp.setTextColor(Color.WHITE);
+        return true;
+  
+  5.笔记导出  
+ 
+
 
   ## 三. 实验结果及截图
   
   1.增加时间戳显示
   
-  ![Image text](https://github.com/1045896802/UIcomponents/blob/master/img/1r.png)
+  ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E5%A2%9E%E5%8A%A0%E6%97%B6%E9%97%B4%E6%88%B3%E6%98%BE%E7%A4%BA.png)
   
   2.根据标题查找便签
   
-  ![Image text](https://github.com/1045896802/UIcomponents/blob/master/img/2r.png)
+  (1)查找页面
   
-  3.使用XML定义菜单
+  ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E6%90%9C%E7%B4%A2%E6%A0%87%E9%A2%98-1.png)
   
-  ![Image text](https://github.com/1045896802/UIcomponents/blob/master/img/3r.png)
+  (2)查找结果
   
-  4.创建上下文操作模式(ActionMode)的上下文菜单
+  ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E6%90%9C%E7%B4%A2%E6%A0%87%E9%A2%98-2.png)
   
-  ![Image text](https://github.com/1045896802/UIcomponents/blob/master/img/4r.png)
+  3.便签排序
+  
+  (1)排序前
+  
+  ![Image text](https://github.com/1045896802/NotePad/blob/master/img/便签排序-1.png)
+  
+  (2)创建时间排序结果
+  
+  ![Image text](https://github.com/1045896802/NotePad/blob/master/img/便签排序-2.png)
+  
+  4.主题更改
+  
+  (1)日间模式:白底黑字
+  
+  (2)夜间模式:黑底白字
+
+
+  
+  
+  
+  
 
 
 
