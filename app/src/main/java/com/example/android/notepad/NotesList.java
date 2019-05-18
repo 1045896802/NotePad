@@ -25,19 +25,27 @@ import android.content.ComponentName;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.net.LinkAddress;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 /**
  * Displays a list of notes. Will display notes from the {@link Uri}
@@ -54,6 +62,10 @@ public class NotesList extends ListActivity {
     // For logging and debugging
     private static final String TAG = "NotesList";
 
+    private SimpleCursorAdapter adapter;
+    private Cursor cursor;
+    private String[] dataColumns = {NotePad.Notes.COLUMN_NAME_TITLE, NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE};
+    private int[] viewIDs = {android.R.id.title, R.id.timeStamp};
     /**
      * The columns needed by the cursor adapter
      */
@@ -62,6 +74,7 @@ public class NotesList extends ListActivity {
             NotePad.Notes.COLUMN_NAME_TITLE, // 1
             //增加时间戳显示
             NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE,
+            //NotePad.Notes.COLUMN_NAME_BACK_COLOR,
     };
 
     /**
@@ -268,6 +281,8 @@ public class NotesList extends ListActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        LinearLayout linearLayout;
+        TextView title,timeStamp;
         switch (item.getItemId()) {
             case R.id.menu_add:
                 /*
@@ -292,6 +307,83 @@ public class NotesList extends ListActivity {
                  * In effect, this starts the NoteEditor Activity in NotePad.
                  */
                 startActivity(new Intent(Intent.ACTION_PASTE, getIntent().getData()));
+                return true;
+
+            //创建时间排序
+            case R.id.menu_sort_createtime:
+                cursor = managedQuery(
+                        getIntent().getData(),
+                        PROJECTION,
+                        null,
+                        null,
+                        NotePad.Notes._ID
+                );
+                adapter = new SimpleCursorAdapter(
+                        this,
+                        R.layout.noteslist_item,
+                        cursor,
+                        dataColumns,
+                        viewIDs
+                );
+                setListAdapter(adapter);
+                return true;
+
+            //修改时间排序
+            case R.id.menu_sort_updatetime:
+                cursor = managedQuery(
+                        getIntent().getData(),
+                        PROJECTION,
+                        null,
+                        null,
+                        NotePad.Notes.DEFAULT_SORT_ORDER
+                );
+                adapter = new SimpleCursorAdapter(
+                        this,
+                        R.layout.noteslist_item,
+                        cursor,
+                        dataColumns,
+                        viewIDs
+                );
+                setListAdapter(adapter);
+                return true;
+
+            //标题排序
+            case R.id.menu_sort_title:
+                cursor = managedQuery(
+                        getIntent().getData(),
+                        PROJECTION,
+                        null,
+                        null,
+                        NotePad.Notes.COLUMN_NAME_TITLE
+                );
+                adapter = new SimpleCursorAdapter(
+                        this,
+                        R.layout.noteslist_item,
+                        cursor,
+                        dataColumns,
+                        viewIDs
+                );
+                setListAdapter(adapter);
+                return true;
+
+            //日间模式
+            case R.id.menu_theme_daytime:
+                linearLayout = (LinearLayout) findViewById(R.id.layout);
+                linearLayout.setBackgroundColor(Color.WHITE);
+                title = (TextView) findViewById(R.id.title);
+                title.setTextColor(Color.BLACK);
+                timeStamp = (TextView) findViewById(R.id.timeStamp);
+                timeStamp.setTextColor(Color.BLACK);
+                return true;
+
+            //夜间模式
+            case R.id.menu_theme_night:
+                linearLayout = (LinearLayout) findViewById(R.id.layout);
+                linearLayout.setBackgroundColor(Color.BLACK);
+                title = (TextView) findViewById(R.id.title);
+                title.setTextColor(Color.WHITE);
+                timeStamp = (TextView) findViewById(R.id.timeStamp);
+                timeStamp.setTextColor(Color.WHITE);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -425,7 +517,7 @@ public class NotesList extends ListActivity {
 
                 // Returns to the caller and skips further processing.
                 return true;
-//END_INCLUDE(copy)
+            //END_INCLUDE(copy)
             case R.id.context_delete:
 
                 // Deletes the note from the provider by passing in a URI in note ID format.
@@ -461,6 +553,7 @@ public class NotesList extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
 
         // Constructs a new URI from the incoming URI and the row ID
+
         Uri uri = ContentUris.withAppendedId(getIntent().getData(), id);
 
         // Gets the action from the incoming Intent

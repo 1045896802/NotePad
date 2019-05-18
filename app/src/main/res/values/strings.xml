@@ -24,8 +24,17 @@
 
     <string name="menu_add">New note</string>
     <string name="menu_search">Search note</string>
+    <string name="menu_sort">Sort note</string>
+    <string name="menu_sort_createtime">Sort by create time</string>
+    <string name="menu_sort_updatetime">Sort by update time</string>
+    <string name="menu_sort_title">Sort by title</string>
+    <string name="menu_theme">Change theme</string>
+    <string name="menu_theme_daytime">Daytime theme</string>
+    <string name="menu_theme_night">Night theme</string>
     <string name="menu_save">Save</string>
     <string name="menu_delete">Delete</string>
+    <string name="menu_export">Export</string>
+    <string name="export_ok">Ok</string>
     <string name="menu_open">Open</string>
     <string name="menu_revert">Revert changes</string>
     <string name="menu_copy">Copy</string>
