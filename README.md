@@ -173,9 +173,9 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
           </menu>
       </item>
   
-  (2)NoteList.java
+  (2)NotesList.java
     
-  在NoteList.java中做相应响应:
+  在NotesList.java中做相应响应:
   
     case R.id.menu_sort_createtime:
         cursor = managedQuery(
