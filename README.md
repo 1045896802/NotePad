@@ -69,6 +69,8 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
   
   (1)notelist_item.xml
   
+  添加一个TextView用于显示时间戳:
+  
     <?xml version="1.0" encoding="utf-8"?>
     <!-- Copyright (C) 2010 The Android Open Source Project
 
@@ -84,14 +86,13 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
          See the License for the specific language governing permissions and
          limitations under the License.
     -->
-
-    <!--添加一个垂直的线性布局-->
+    
     <LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <!--原标题TextView-->
+        
         <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@android:id/title"
             android:layout_width="match_parent"
@@ -101,7 +102,6 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
             android:paddingLeft="5dip"
             android:singleLine="true"/>
         
-        <!--添加显示时间的TextView-->
         <TextView
             android:id="@+id/timeStamp"
             android:layout_width="match_parent"
@@ -111,6 +111,8 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
     </LinearLayout>
   
   （2）NotePadProvider.java
+  
+  修改时间格式为:"yyyy.MM.dd HH:mm:ss":
    
     // Gets the current system time in milliseconds
     Long now = Long.valueOf(System.currentTimeMillis());
@@ -149,6 +151,8 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
     
   3.便签排序
   
+  在菜单栏中增加排序选项:
+  
   (1)list_options_menu.xml
   
     <item
@@ -168,9 +172,11 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
                   android:title="@string/menu_sort_title" />
           </menu>
       </item>
-      
+  
   (2)NoteList.java
     
+  在NoteList.java中做相应响应:
+  
     case R.id.menu_sort_createtime:
         cursor = managedQuery(
                 getIntent().getData(),
@@ -227,7 +233,7 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
         
   4.主题更改
   
-  更改默认主题为白色
+  (1)更改默认主题为白色
   
   AndroidManifest.xml
   
@@ -259,6 +265,10 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
     </activity>
     
     
+ (2)更改主题的响应:
+ 
+ NotesList.java
+ 
     //日间模式
     case R.id.menu_theme_daytime:
         linearLayout = (LinearLayout) findViewById(R.id.layout);
@@ -280,6 +290,8 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
         return true;
   
   5.笔记导出
+  
+  NoteExport.java
   
     package com.example.android.notepad;
 
@@ -394,11 +406,11 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
   
   2.根据标题查找便签
   
-  (1)查找页面
+  (1)查找页面,未输入任何搜索内容时,显示所有便签
   
   ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E6%90%9C%E7%B4%A2%E6%A0%87%E9%A2%98-1.png)
   
-  (2)查找结果
+  (2)查找结果,根据响应内容进行模糊查询
   
   ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E6%90%9C%E7%B4%A2%E6%A0%87%E9%A2%98-2.png)
   
@@ -408,7 +420,7 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
   
   ![Image text](https://github.com/1045896802/NotePad/blob/master/img/便签排序-1.png)
   
-  (2)创建时间排序结果
+  (2)根据创建时间排序结果
   
   ![Image text](https://github.com/1045896802/NotePad/blob/master/img/便签排序-2.png)
   
@@ -425,10 +437,4 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
   5.笔记导出
   
   ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E7%AC%94%E8%AE%B0%E5%AF%BC%E5%87%BA.png)
-  
-  
-  
-  
-
-
 
