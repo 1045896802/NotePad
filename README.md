@@ -410,7 +410,7 @@ https://developer.android.google.cn/guide/topics/providers/content-provider-crea
   
   ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E6%90%9C%E7%B4%A2%E6%A0%87%E9%A2%98-1.png)
   
-  (2)查找结果,根据响应内容进行模糊查询
+  (2)查找结果,根据输入内容进行模糊查询
   
   ![Image text](https://github.com/1045896802/NotePad/blob/master/img/%E6%90%9C%E7%B4%A2%E6%A0%87%E9%A2%98-2.png)
   
